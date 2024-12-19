@@ -1,0 +1,24 @@
+name: 'tmate-macos'
+
+on: 
+  workflow_dispatch: 
+    inputs: 
+      mode: 
+        description: 'Choose tmate or ngrok mode' 
+        required: false 
+        default: 'tmate'
+
+jobs: 
+  ssh-debug: 
+    runs-on: macos-latest 
+    steps: 
+      - name: Checkout repository 
+        uses: actions/checkout@v2 # Check out your code repository
+
+      - name: Choose mode tmate (macos) 
+        run: | 
+          MODE=${{ github.event.inputs.mode }} 
+          bash ./${MODE}2actions.sh # Use relative path to execute script 
+        shell: bash       - name: Sleep         run: sleep 6h
+        
+
